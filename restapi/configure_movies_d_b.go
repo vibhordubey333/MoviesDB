@@ -37,29 +37,29 @@ func configureAPI(api *operations.MoviesDBAPI) http.Handler {
 
 	api.JSONProducer = runtime.JSONProducer()
 
-	if api.AddCommentAddCommentsHandler == nil {
-		api.AddCommentAddCommentsHandler = add_comment.AddCommentsHandlerFunc(func(params add_comment.AddCommentsParams) middleware.Responder {
-			return middleware.NotImplemented("operation add_comment.AddComments has not yet been implemented")
+	if api.AddMovieAddmovieratingHandler == nil {
+		api.AddMovieAddmovieratingHandler = add_movie.AddmovieratingHandlerFunc(func(params add_movie.AddmovieratingParams) middleware.Responder {
+			return middleware.NotImplemented("operation add_movie.Addmovierating has not yet been implemented")
 		})
 	}
-	if api.AddMovieAddMovieHandler == nil {
-		api.AddMovieAddMovieHandler = add_movie.AddMovieHandlerFunc(func(params add_movie.AddMovieParams) middleware.Responder {
-			return middleware.NotImplemented("operation add_movie.AddMovie has not yet been implemented")
+	if api.MovieinfoGetmoviesinfoHandler == nil {
+		api.MovieinfoGetmoviesinfoHandler = movieinfo.GetmoviesinfoHandlerFunc(func(params movieinfo.GetmoviesinfoParams) middleware.Responder {
+			return middleware.NotImplemented("operation movieinfo.Getmoviesinfo has not yet been implemented")
 		})
 	}
-	if api.AddMovieAddRatingHandler == nil {
-		api.AddMovieAddRatingHandler = add_movie.AddRatingHandlerFunc(func(params add_movie.AddRatingParams) middleware.Responder {
-			return middleware.NotImplemented("operation add_movie.AddRating has not yet been implemented")
+	if api.AddCommentPostcommentsHandler == nil {
+		api.AddCommentPostcommentsHandler = add_comment.PostcommentsHandlerFunc(func(params add_comment.PostcommentsParams) middleware.Responder {
+			return middleware.NotImplemented("operation add_comment.Postcomments has not yet been implemented")
 		})
 	}
-	if api.MovieinfoGetMovieInfoHandler == nil {
-		api.MovieinfoGetMovieInfoHandler = movieinfo.GetMovieInfoHandlerFunc(func(params movieinfo.GetMovieInfoParams) middleware.Responder {
-			return middleware.NotImplemented("operation movieinfo.GetMovieInfo has not yet been implemented")
+	if api.AddMoviePostmovieHandler == nil {
+		api.AddMoviePostmovieHandler = add_movie.PostmovieHandlerFunc(func(params add_movie.PostmovieParams) middleware.Responder {
+			return middleware.NotImplemented("operation add_movie.Postmovie has not yet been implemented")
 		})
 	}
-	if api.RatemoviesMoviesratingHandler == nil {
-		api.RatemoviesMoviesratingHandler = ratemovies.MoviesratingHandlerFunc(func(params ratemovies.MoviesratingParams) middleware.Responder {
-			return middleware.NotImplemented("operation ratemovies.Moviesrating has not yet been implemented")
+	if api.RatemoviesRatemoviesHandler == nil {
+		api.RatemoviesRatemoviesHandler = ratemovies.RatemoviesHandlerFunc(func(params ratemovies.RatemoviesParams) middleware.Responder {
+			return middleware.NotImplemented("operation ratemovies.Ratemovies has not yet been implemented")
 		})
 	}
 

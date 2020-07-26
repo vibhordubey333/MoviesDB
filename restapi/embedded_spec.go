@@ -50,7 +50,7 @@ func init() {
           "addComment"
         ],
         "summary": "Add movie into DB.",
-        "operationId": "addComments",
+        "operationId": "postcomments",
         "parameters": [
           {
             "name": "body",
@@ -109,7 +109,7 @@ func init() {
           "addMovie"
         ],
         "summary": "Add movie into DB.",
-        "operationId": "addMovie",
+        "operationId": "postmovie",
         "parameters": [
           {
             "name": "body",
@@ -172,7 +172,7 @@ func init() {
           "addMovie"
         ],
         "summary": "Add movie into DB.",
-        "operationId": "addRating",
+        "operationId": "addmovierating",
         "parameters": [
           {
             "name": "body",
@@ -234,7 +234,7 @@ func init() {
           "movieinfo"
         ],
         "summary": "Get a information about movie.",
-        "operationId": "getMovieInfo",
+        "operationId": "getmoviesinfo",
         "parameters": [
           {
             "name": "body",
@@ -316,7 +316,7 @@ func init() {
           "ratemovies"
         ],
         "summary": "Movies rated by a user.",
-        "operationId": "moviesrating",
+        "operationId": "ratemovies",
         "parameters": [
           {
             "name": "body",
@@ -436,7 +436,7 @@ func init() {
           "addComment"
         ],
         "summary": "Add movie into DB.",
-        "operationId": "addComments",
+        "operationId": "postcomments",
         "parameters": [
           {
             "name": "body",
@@ -495,7 +495,7 @@ func init() {
           "addMovie"
         ],
         "summary": "Add movie into DB.",
-        "operationId": "addMovie",
+        "operationId": "postmovie",
         "parameters": [
           {
             "name": "body",
@@ -558,7 +558,7 @@ func init() {
           "addMovie"
         ],
         "summary": "Add movie into DB.",
-        "operationId": "addRating",
+        "operationId": "addmovierating",
         "parameters": [
           {
             "name": "body",
@@ -620,7 +620,7 @@ func init() {
           "movieinfo"
         ],
         "summary": "Get a information about movie.",
-        "operationId": "getMovieInfo",
+        "operationId": "getmoviesinfo",
         "parameters": [
           {
             "name": "body",
@@ -692,7 +692,7 @@ func init() {
           "ratemovies"
         ],
         "summary": "Movies rated by a user.",
-        "operationId": "moviesrating",
+        "operationId": "ratemovies",
         "parameters": [
           {
             "name": "body",
@@ -718,7 +718,7 @@ func init() {
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/MoviesratingOKBodyItems0"
+                "$ref": "#/definitions/RatemoviesOKBodyItems0"
               }
             }
           },
@@ -739,7 +739,7 @@ func init() {
     }
   },
   "definitions": {
-    "MoviesratingOKBodyItems0": {
+    "RatemoviesOKBodyItems0": {
       "type": "object",
       "properties": {
         "comments": {

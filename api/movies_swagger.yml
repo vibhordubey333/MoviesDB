@@ -29,7 +29,7 @@ paths:
         - addMovie
       summary: Add movie into DB.
       description: Add movie into DB.
-      operationId: addMovie
+      operationId: postmovie
       
       parameters:
         - in: body
@@ -74,7 +74,7 @@ paths:
         - movieinfo
       summary: Get a information about movie.
       description: Get a information about movie.
-      operationId: getMovieInfo
+      operationId: getmoviesinfo
       produces: 
         - application/json
       parameters:
@@ -131,7 +131,7 @@ paths:
         - ratemovies
       summary: Movies rated by a user.
       description: Movies rated by a user.
-      operationId: moviesrating
+      operationId: ratemovies
       produces: 
         - application/json
       parameters:
@@ -178,7 +178,7 @@ paths:
         - addMovie
       summary: Add movie into DB.
       description: Add movie into DB.
-      operationId: addRating
+      operationId: addmovierating
       parameters:
         - in: body
           name: body
@@ -218,7 +218,7 @@ paths:
         - addComment
       summary: Add movie into DB.
       description: Add movie into DB.
-      operationId: addComments
+      operationId: postcomments
       parameters:
         - in: body
           name: body

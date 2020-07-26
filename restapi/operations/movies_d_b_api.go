@@ -46,20 +46,20 @@ func NewMoviesDBAPI(spec *loads.Document) *MoviesDBAPI {
 
 		JSONProducer: runtime.JSONProducer(),
 
-		AddCommentAddCommentsHandler: add_comment.AddCommentsHandlerFunc(func(params add_comment.AddCommentsParams) middleware.Responder {
-			return middleware.NotImplemented("operation add_comment.AddComments has not yet been implemented")
+		AddMovieAddmovieratingHandler: add_movie.AddmovieratingHandlerFunc(func(params add_movie.AddmovieratingParams) middleware.Responder {
+			return middleware.NotImplemented("operation add_movie.Addmovierating has not yet been implemented")
 		}),
-		AddMovieAddMovieHandler: add_movie.AddMovieHandlerFunc(func(params add_movie.AddMovieParams) middleware.Responder {
-			return middleware.NotImplemented("operation add_movie.AddMovie has not yet been implemented")
+		MovieinfoGetmoviesinfoHandler: movieinfo.GetmoviesinfoHandlerFunc(func(params movieinfo.GetmoviesinfoParams) middleware.Responder {
+			return middleware.NotImplemented("operation movieinfo.Getmoviesinfo has not yet been implemented")
 		}),
-		AddMovieAddRatingHandler: add_movie.AddRatingHandlerFunc(func(params add_movie.AddRatingParams) middleware.Responder {
-			return middleware.NotImplemented("operation add_movie.AddRating has not yet been implemented")
+		AddCommentPostcommentsHandler: add_comment.PostcommentsHandlerFunc(func(params add_comment.PostcommentsParams) middleware.Responder {
+			return middleware.NotImplemented("operation add_comment.Postcomments has not yet been implemented")
 		}),
-		MovieinfoGetMovieInfoHandler: movieinfo.GetMovieInfoHandlerFunc(func(params movieinfo.GetMovieInfoParams) middleware.Responder {
-			return middleware.NotImplemented("operation movieinfo.GetMovieInfo has not yet been implemented")
+		AddMoviePostmovieHandler: add_movie.PostmovieHandlerFunc(func(params add_movie.PostmovieParams) middleware.Responder {
+			return middleware.NotImplemented("operation add_movie.Postmovie has not yet been implemented")
 		}),
-		RatemoviesMoviesratingHandler: ratemovies.MoviesratingHandlerFunc(func(params ratemovies.MoviesratingParams) middleware.Responder {
-			return middleware.NotImplemented("operation ratemovies.Moviesrating has not yet been implemented")
+		RatemoviesRatemoviesHandler: ratemovies.RatemoviesHandlerFunc(func(params ratemovies.RatemoviesParams) middleware.Responder {
+			return middleware.NotImplemented("operation ratemovies.Ratemovies has not yet been implemented")
 		}),
 	}
 }
@@ -94,16 +94,16 @@ type MoviesDBAPI struct {
 	//   - application/json
 	JSONProducer runtime.Producer
 
-	// AddCommentAddCommentsHandler sets the operation handler for the add comments operation
-	AddCommentAddCommentsHandler add_comment.AddCommentsHandler
-	// AddMovieAddMovieHandler sets the operation handler for the add movie operation
-	AddMovieAddMovieHandler add_movie.AddMovieHandler
-	// AddMovieAddRatingHandler sets the operation handler for the add rating operation
-	AddMovieAddRatingHandler add_movie.AddRatingHandler
-	// MovieinfoGetMovieInfoHandler sets the operation handler for the get movie info operation
-	MovieinfoGetMovieInfoHandler movieinfo.GetMovieInfoHandler
-	// RatemoviesMoviesratingHandler sets the operation handler for the moviesrating operation
-	RatemoviesMoviesratingHandler ratemovies.MoviesratingHandler
+	// AddMovieAddmovieratingHandler sets the operation handler for the addmovierating operation
+	AddMovieAddmovieratingHandler add_movie.AddmovieratingHandler
+	// MovieinfoGetmoviesinfoHandler sets the operation handler for the getmoviesinfo operation
+	MovieinfoGetmoviesinfoHandler movieinfo.GetmoviesinfoHandler
+	// AddCommentPostcommentsHandler sets the operation handler for the postcomments operation
+	AddCommentPostcommentsHandler add_comment.PostcommentsHandler
+	// AddMoviePostmovieHandler sets the operation handler for the postmovie operation
+	AddMoviePostmovieHandler add_movie.PostmovieHandler
+	// RatemoviesRatemoviesHandler sets the operation handler for the ratemovies operation
+	RatemoviesRatemoviesHandler ratemovies.RatemoviesHandler
 	// ServeError is called when an error is received, there is a default handler
 	// but you can set your own with this
 	ServeError func(http.ResponseWriter, *http.Request, error)
@@ -170,20 +170,20 @@ func (o *MoviesDBAPI) Validate() error {
 		unregistered = append(unregistered, "JSONProducer")
 	}
 
-	if o.AddCommentAddCommentsHandler == nil {
-		unregistered = append(unregistered, "add_comment.AddCommentsHandler")
+	if o.AddMovieAddmovieratingHandler == nil {
+		unregistered = append(unregistered, "add_movie.AddmovieratingHandler")
 	}
-	if o.AddMovieAddMovieHandler == nil {
-		unregistered = append(unregistered, "add_movie.AddMovieHandler")
+	if o.MovieinfoGetmoviesinfoHandler == nil {
+		unregistered = append(unregistered, "movieinfo.GetmoviesinfoHandler")
 	}
-	if o.AddMovieAddRatingHandler == nil {
-		unregistered = append(unregistered, "add_movie.AddRatingHandler")
+	if o.AddCommentPostcommentsHandler == nil {
+		unregistered = append(unregistered, "add_comment.PostcommentsHandler")
 	}
-	if o.MovieinfoGetMovieInfoHandler == nil {
-		unregistered = append(unregistered, "movieinfo.GetMovieInfoHandler")
+	if o.AddMoviePostmovieHandler == nil {
+		unregistered = append(unregistered, "add_movie.PostmovieHandler")
 	}
-	if o.RatemoviesMoviesratingHandler == nil {
-		unregistered = append(unregistered, "ratemovies.MoviesratingHandler")
+	if o.RatemoviesRatemoviesHandler == nil {
+		unregistered = append(unregistered, "ratemovies.RatemoviesHandler")
 	}
 
 	if len(unregistered) > 0 {
@@ -276,23 +276,23 @@ func (o *MoviesDBAPI) initHandlerCache() {
 	if o.handlers["POST"] == nil {
 		o.handlers["POST"] = make(map[string]http.Handler)
 	}
-	o.handlers["POST"]["/imdbservice/addcomment"] = add_comment.NewAddComments(o.context, o.AddCommentAddCommentsHandler)
-	if o.handlers["POST"] == nil {
-		o.handlers["POST"] = make(map[string]http.Handler)
-	}
-	o.handlers["POST"]["/imdbservice/addmovie"] = add_movie.NewAddMovie(o.context, o.AddMovieAddMovieHandler)
-	if o.handlers["POST"] == nil {
-		o.handlers["POST"] = make(map[string]http.Handler)
-	}
-	o.handlers["POST"]["/imdbservice/addrating"] = add_movie.NewAddRating(o.context, o.AddMovieAddRatingHandler)
+	o.handlers["POST"]["/imdbservice/addrating"] = add_movie.NewAddmovierating(o.context, o.AddMovieAddmovieratingHandler)
 	if o.handlers["GET"] == nil {
 		o.handlers["GET"] = make(map[string]http.Handler)
 	}
-	o.handlers["GET"]["/imdbservice/movieinfo"] = movieinfo.NewGetMovieInfo(o.context, o.MovieinfoGetMovieInfoHandler)
+	o.handlers["GET"]["/imdbservice/movieinfo"] = movieinfo.NewGetmoviesinfo(o.context, o.MovieinfoGetmoviesinfoHandler)
+	if o.handlers["POST"] == nil {
+		o.handlers["POST"] = make(map[string]http.Handler)
+	}
+	o.handlers["POST"]["/imdbservice/addcomment"] = add_comment.NewPostcomments(o.context, o.AddCommentPostcommentsHandler)
+	if o.handlers["POST"] == nil {
+		o.handlers["POST"] = make(map[string]http.Handler)
+	}
+	o.handlers["POST"]["/imdbservice/addmovie"] = add_movie.NewPostmovie(o.context, o.AddMoviePostmovieHandler)
 	if o.handlers["GET"] == nil {
 		o.handlers["GET"] = make(map[string]http.Handler)
 	}
-	o.handlers["GET"]["/imdbservice/moviesrating"] = ratemovies.NewMoviesrating(o.context, o.RatemoviesMoviesratingHandler)
+	o.handlers["GET"]["/imdbservice/moviesrating"] = ratemovies.NewRatemovies(o.context, o.RatemoviesRatemoviesHandler)
 }
 
 // Serve creates a http handler to serve the API over HTTP
