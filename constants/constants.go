@@ -5,4 +5,6 @@ const (
 	URI                 = "mongodb://localhost:27017"
 	INTERNAL_ERROR_CODE = "500"
 	SUCCESS_CODE        = "200"
+	DB_NAME             = "IMDB"
+	COLLECTION_NAME     = "IMDBRegistry"
 )
