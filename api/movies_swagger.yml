@@ -1,0 +1,263 @@
+swagger: '2.0'
+info:
+  description: API Specification for IMDB service.
+  version: 1.0.0
+  title: API Specification for IMDB service.
+  contact:
+    email: vibhordubey333@gmail.com
+  license:
+    name: MIT
+    url: 'https://github.com/vibhordubey333'
+host: localhost:7777
+basePath: /v1
+tags:
+  - name: imdb
+    description: API Specification for IMDB service.
+    externalDocs:
+      description: Find out more
+      url: 'https://github.com/vibhordubey333'
+consumes:
+  - application/json
+produces:
+  - application/json
+schemes:
+  - http
+paths:
+  '/imdbservice/addmovie':
+    post:
+      tags:
+        - addMovie
+      summary: Add movie into DB.
+      description: Add movie into DB.
+      operationId: addMovie
+      
+      parameters:
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              MovieName:
+                type: string
+                description: Movie name.
+              MovieRating:
+                type: string
+                description: Movie rating.
+              MovieComments:
+                type: string
+                description: Movie comments.
+                
+      responses:
+        200:
+          description: Movie Uploaded Successfully
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                description: Response Code
+              message:
+                type: string
+                description: Success message
+        500 :
+          description: Server Error   
+          schema:
+            $ref: "#/definitions/error"
+        default:
+          description: error
+          schema:
+            $ref: "#/definitions/error"
+            
+  '/imdbservice/movieinfo':
+    get:
+      tags:
+        - movieinfo
+      summary: Get a information about movie.
+      description: Get a information about movie.
+      operationId: getMovieInfo
+      produces: 
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              MovieName:
+                type: string
+                description: Movie name.
+              UserName:
+                type: string
+                description: User name.
+      responses:
+        200:
+          description: Success.
+          schema:
+            type: object
+            properties:
+              movieName:
+                type: string
+                description: Response Code
+              avgRating:
+                type: string
+                description: File upload message
+              ratingGivenCount:
+                type: integer
+                description: File upload message
+              userComments:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    username:
+                      type: string
+                      description: Name of the user.
+                    comment:
+                      type: string
+                      description: Comment given by user.
+                    
+        500 :
+          description: Server Error
+          schema:
+            $ref: "#/definitions/error"
+        default:
+          description: error
+          schema:
+            $ref: "#/definitions/error"
+            
+  '/imdbservice/moviesrating':
+    get:
+      tags:
+        - ratemovies
+      summary: Movies rated by a user.
+      description: Movies rated by a user.
+      operationId: moviesrating
+      produces: 
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              MovieName:
+                type: string
+                description: Movie name.
+              UserName:
+                type: string
+                description: Movie rating.
+      responses:
+        200:
+          description: Listing movies insepected by user.
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                movieName:
+                  type: string
+                  description: Name of the movie.
+                rating:
+                  type: string
+                  description: Rating of the movie.
+                comments:
+                  type: string
+                  description: Comments given on the movie by user.
+        500 :
+          description: Server Error   
+          schema:
+            $ref: "#/definitions/error"
+        default:
+          description: error
+          schema:
+            $ref: "#/definitions/error"
+  
+  '/imdbservice/addrating':
+    post:
+      tags:
+        - addMovie
+      summary: Add movie into DB.
+      description: Add movie into DB.
+      operationId: addRating
+      parameters:
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              MovieName:
+                type: string
+                description: Movie name.
+              MovieRating:
+                type: string
+                description: Movie rating.
+      responses:
+        200:
+          description: Rating added successfully.
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                description: Response Code
+              message:
+                type: string
+                description: File upload message
+        500 :
+          description: Server Error   
+          schema:
+            $ref: "#/definitions/error"
+        default:
+          description: error
+          schema:
+            $ref: "#/definitions/error"
+    
+  '/imdbservice/addcomment':
+    post:
+      tags:
+        - addComment
+      summary: Add movie into DB.
+      description: Add movie into DB.
+      operationId: addComments
+      parameters:
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              MovieName:
+                type: string
+                description: Movie name. 
+              MovieComment:
+                type: string
+                description: Comment for movie.
+      responses:
+        200:
+          description: Comment added successfully.
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                description: Response Code
+              message:
+                type: string
+                description: Comment addded message.
+        500 :
+          description: Server Error   
+          schema:
+            $ref: "#/definitions/error"
+        default:
+          description: error
+          schema:
+            $ref: "#/definitions/error"          
+definitions:
+    error:
+      type: object
+      required:
+        - message
+      properties:
+        code:
+          type: string
+        message:
+          type: string
