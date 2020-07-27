@@ -104,7 +104,7 @@ type AddmovieratingOKBody struct {
 	// Response Code
 	Code string `json:"code,omitempty"`
 
-	// File upload message
+	// Message.
 	Message string `json:"message,omitempty"`
 }
 

@@ -203,7 +203,7 @@ func init() {
                   "type": "string"
                 },
                 "message": {
-                  "description": "File upload message",
+                  "description": "Message.",
                   "type": "string"
                 }
               }
@@ -245,10 +245,6 @@ func init() {
                 "MovieName": {
                   "description": "Movie name.",
                   "type": "string"
-                },
-                "UserName": {
-                  "description": "User name.",
-                  "type": "string"
                 }
               }
             }
@@ -261,7 +257,7 @@ func init() {
               "type": "object",
               "properties": {
                 "avgRating": {
-                  "description": "File upload message",
+                  "description": "Rating.",
                   "type": "string"
                 },
                 "movieName": {
@@ -269,7 +265,7 @@ func init() {
                   "type": "string"
                 },
                 "ratingGivenCount": {
-                  "description": "File upload message",
+                  "description": "Rating count.",
                   "type": "integer"
                 },
                 "userComments": {
@@ -589,7 +585,7 @@ func init() {
                   "type": "string"
                 },
                 "message": {
-                  "description": "File upload message",
+                  "description": "Message.",
                   "type": "string"
                 }
               }
@@ -631,10 +627,6 @@ func init() {
                 "MovieName": {
                   "description": "Movie name.",
                   "type": "string"
-                },
-                "UserName": {
-                  "description": "User name.",
-                  "type": "string"
                 }
               }
             }
@@ -647,7 +639,7 @@ func init() {
               "type": "object",
               "properties": {
                 "avgRating": {
-                  "description": "File upload message",
+                  "description": "Rating.",
                   "type": "string"
                 },
                 "movieName": {
@@ -655,7 +647,7 @@ func init() {
                   "type": "string"
                 },
                 "ratingGivenCount": {
-                  "description": "File upload message",
+                  "description": "Rating count.",
                   "type": "integer"
                 },
                 "userComments": {

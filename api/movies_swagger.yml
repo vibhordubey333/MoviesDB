@@ -86,9 +86,6 @@ paths:
               MovieName:
                 type: string
                 description: Movie name.
-              UserName:
-                type: string
-                description: User name.
       responses:
         200:
           description: Success.
@@ -100,10 +97,10 @@ paths:
                 description: Response Code
               avgRating:
                 type: string
-                description: File upload message
+                description: Rating.
               ratingGivenCount:
                 type: integer
-                description: File upload message
+                description: Rating count.
               userComments:
                 type: array
                 items:
@@ -202,7 +199,7 @@ paths:
                 description: Response Code
               message:
                 type: string
-                description: File upload message
+                description: Message.
         500 :
           description: Server Error   
           schema:

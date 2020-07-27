@@ -6,15 +6,16 @@ import (
 	"crypto/tls"
 	"net/http"
 
-	"github.com/go-openapi/errors"
-	"github.com/go-openapi/runtime"
-	"github.com/go-openapi/runtime/middleware"
-
+	"MoviesDB/handlers"
 	"MoviesDB/restapi/operations"
 	"MoviesDB/restapi/operations/add_comment"
 	"MoviesDB/restapi/operations/add_movie"
 	"MoviesDB/restapi/operations/movieinfo"
 	"MoviesDB/restapi/operations/ratemovies"
+
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/runtime/middleware"
 )
 
 //go:generate swagger generate server --target ..\..\MoviesDB --name MoviesDB --spec ..\api\movies_swagger.yml
@@ -42,11 +43,9 @@ func configureAPI(api *operations.MoviesDBAPI) http.Handler {
 			return middleware.NotImplemented("operation add_movie.Addmovierating has not yet been implemented")
 		})
 	}
-	if api.MovieinfoGetmoviesinfoHandler == nil {
-		api.MovieinfoGetmoviesinfoHandler = movieinfo.GetmoviesinfoHandlerFunc(func(params movieinfo.GetmoviesinfoParams) middleware.Responder {
-			return middleware.NotImplemented("operation movieinfo.Getmoviesinfo has not yet been implemented")
-		})
-	}
+
+	api.MovieinfoGetmoviesinfoHandler = movieinfo.GetmoviesinfoHandlerFunc(handlers.GetMovieInfo)
+
 	if api.AddCommentPostcommentsHandler == nil {
 		api.AddCommentPostcommentsHandler = add_comment.PostcommentsHandlerFunc(func(params add_comment.PostcommentsParams) middleware.Responder {
 			return middleware.NotImplemented("operation add_comment.Postcomments has not yet been implemented")

@@ -70,9 +70,6 @@ type GetmoviesinfoBody struct {
 
 	// Movie name.
 	MovieName string `json:"MovieName,omitempty"`
-
-	// User name.
-	UserName string `json:"UserName,omitempty"`
 }
 
 // Validate validates this getmoviesinfo body
@@ -103,13 +100,13 @@ func (o *GetmoviesinfoBody) UnmarshalBinary(b []byte) error {
 // swagger:model GetmoviesinfoOKBody
 type GetmoviesinfoOKBody struct {
 
-	// File upload message
+	// Rating.
 	AvgRating string `json:"avgRating,omitempty"`
 
 	// Response Code
 	MovieName string `json:"movieName,omitempty"`
 
-	// File upload message
+	// Rating count.
 	RatingGivenCount int64 `json:"ratingGivenCount,omitempty"`
 
 	// user comments
