@@ -2,6 +2,8 @@ package handlers
 
 import (
 	"MoviesDB/restapi/operations/movieinfo"
+	"MoviesDB/service"
+	"log"
 
 	"github.com/go-openapi/runtime/middleware"
 	//"go.uber.org/zap"
@@ -21,5 +23,6 @@ import (
 // }
 
 func GetMovieInfo(params movieinfo.GetmoviesinfoParams) middleware.Responder {
-
+	log.Println("Request recieved by GetMoviesInfo handler.")
+	return service.GetMoviesInfo(params)
 }

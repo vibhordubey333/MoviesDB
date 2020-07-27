@@ -7,4 +7,5 @@ const (
 	SUCCESS_CODE        = "200"
 	DB_NAME             = "IMDB"
 	COLLECTION_NAME     = "IMDBRegistry"
+	MOVIE_NAME_EMPTY    = "Movie name is empty."
 )

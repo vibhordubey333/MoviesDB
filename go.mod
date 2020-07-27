@@ -12,7 +12,7 @@ require (
 	github.com/go-openapi/validate v0.19.10
 	github.com/jessevdk/go-flags v1.4.0
 	github.com/stretchr/testify v1.6.1 // indirect
-	go.mongodb.org/mongo-driver v1.3.5 // indirect
+	go.mongodb.org/mongo-driver v1.3.5
 	go.uber.org/zap v1.15.0 // indirect
 	golang.org/x/net v0.0.0-20200602114024-627f9648deb9
 )
