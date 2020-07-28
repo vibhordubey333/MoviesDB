@@ -105,10 +105,10 @@ func (o *PostmovieBody) UnmarshalBinary(b []byte) error {
 type PostmovieOKBody struct {
 
 	// Response Code
-	Code string `json:"code,omitempty"`
+	Code string `json:"Code,omitempty"`
 
 	// Success message
-	Message string `json:"message,omitempty"`
+	Message string `json:"Message,omitempty"`
 }
 
 // Validate validates this postmovie o k body

@@ -102,13 +102,13 @@ func (o *RatemoviesBody) UnmarshalBinary(b []byte) error {
 type RatemoviesOKBodyItems0 struct {
 
 	// Comments given on the movie by user.
-	Comments string `json:"comments,omitempty"`
+	Comments string `json:"Comments,omitempty"`
 
 	// Name of the movie.
-	MovieName string `json:"movieName,omitempty"`
+	MovieName string `json:"MovieName,omitempty"`
 
 	// Rating of the movie.
-	Rating string `json:"rating,omitempty"`
+	Rating string `json:"Rating,omitempty"`
 }
 
 // Validate validates this ratemovies o k body items0

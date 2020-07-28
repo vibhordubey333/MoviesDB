@@ -8,15 +8,7 @@ import (
 	"log"
 )
 
-/*
-	MovieName   string   `json:"moviename,omitempty"`
-	Genre       string   `json:"genre,omitempty"`
-	Rating      string   `json:"rating,omitempty"`
-	PeopleCount int      `json:"peoplecount,omitempty"`
-	Comments    []string `json:"comments,omitempty"`
-*/
-
-//Hardcoded data.
+//Hardcoded data , initialized from init method.
 func DummyData() error {
 	mongoObj := connect.GetMongoObject()
 	if mongoObj == nil {
@@ -35,9 +27,9 @@ func DummyData() error {
 		"Alexi Murdoch":   "Phenomenal movie.",
 		"Olafur Arnalds":  "Awesome.",
 	}
-	insertObj1 := entities.IMDBRegistry{"Shawshank Redemption", "Crime,Thriller", "9.3", 2, commentsObj1}
+	insertObj1 := entities.IMDBRegistry{"Shawshank Redemption", "9.3", 2, commentsObj1}
 
-	insertObj2 := entities.IMDBRegistry{"Hannibal", "Crime,Psychological Thriller", "9.0", 4, commentsObj2}
+	insertObj2 := entities.IMDBRegistry{"Hannibal", "9.0", 4, commentsObj2}
 
 	multipleDBS := []interface{}{insertObj1, insertObj2}
 

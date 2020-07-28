@@ -102,10 +102,10 @@ func (o *AddmovieratingBody) UnmarshalBinary(b []byte) error {
 type AddmovieratingOKBody struct {
 
 	// Response Code
-	Code string `json:"code,omitempty"`
+	Code string `json:"Code,omitempty"`
 
 	// Message.
-	Message string `json:"message,omitempty"`
+	Message string `json:"Message,omitempty"`
 }
 
 // Validate validates this addmovierating o k body

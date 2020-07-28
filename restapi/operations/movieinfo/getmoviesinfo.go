@@ -7,7 +7,6 @@ package movieinfo
 
 import (
 	"net/http"
-	"strconv"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime/middleware"
@@ -101,16 +100,16 @@ func (o *GetmoviesinfoBody) UnmarshalBinary(b []byte) error {
 type GetmoviesinfoOKBody struct {
 
 	// Rating.
-	AvgRating string `json:"avgRating,omitempty"`
+	AvgRating string `json:"AvgRating,omitempty"`
 
 	// Response Code
-	MovieName string `json:"movieName,omitempty"`
+	MovieName string `json:"MovieName,omitempty"`
 
 	// Rating count.
-	RatingGivenCount int64 `json:"ratingGivenCount,omitempty"`
+	PeopleRated int64 `json:"PeopleRated,omitempty"`
 
 	// user comments
-	UserComments []*UserCommentsItems0 `json:"userComments"`
+	UserComments []string `json:"UserComments"`
 }
 
 // Validate validates this getmoviesinfo o k body
@@ -134,18 +133,6 @@ func (o *GetmoviesinfoOKBody) validateUserComments(formats strfmt.Registry) erro
 	}
 
 	for i := 0; i < len(o.UserComments); i++ {
-		if swag.IsZero(o.UserComments[i]) { // not required
-			continue
-		}
-
-		if o.UserComments[i] != nil {
-			if err := o.UserComments[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("getmoviesinfoOK" + "." + "userComments" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
 
 	}
 
@@ -163,41 +150,6 @@ func (o *GetmoviesinfoOKBody) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (o *GetmoviesinfoOKBody) UnmarshalBinary(b []byte) error {
 	var res GetmoviesinfoOKBody
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*o = res
-	return nil
-}
-
-// UserCommentsItems0 user comments items0
-//
-// swagger:model UserCommentsItems0
-type UserCommentsItems0 struct {
-
-	// Comment given by user.
-	Comment string `json:"comment,omitempty"`
-
-	// Name of the user.
-	Username string `json:"username,omitempty"`
-}
-
-// Validate validates this user comments items0
-func (o *UserCommentsItems0) Validate(formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (o *UserCommentsItems0) MarshalBinary() ([]byte, error) {
-	if o == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(o)
-}
-
-// UnmarshalBinary interface implementation
-func (o *UserCommentsItems0) UnmarshalBinary(b []byte) error {
-	var res UserCommentsItems0
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

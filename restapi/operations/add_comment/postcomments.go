@@ -102,10 +102,10 @@ func (o *PostcommentsBody) UnmarshalBinary(b []byte) error {
 type PostcommentsOKBody struct {
 
 	// Response Code
-	Code string `json:"code,omitempty"`
+	Code string `json:"Code,omitempty"`
 
 	// Comment addded message.
-	Message string `json:"message,omitempty"`
+	Message string `json:"Message,omitempty"`
 }
 
 // Validate validates this postcomments o k body

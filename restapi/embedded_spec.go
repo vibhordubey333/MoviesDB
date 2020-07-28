@@ -76,11 +76,11 @@ func init() {
             "schema": {
               "type": "object",
               "properties": {
-                "code": {
+                "Code": {
                   "description": "Response Code",
                   "type": "string"
                 },
-                "message": {
+                "Message": {
                   "description": "Comment addded message.",
                   "type": "string"
                 }
@@ -139,11 +139,11 @@ func init() {
             "schema": {
               "type": "object",
               "properties": {
-                "code": {
+                "Code": {
                   "description": "Response Code",
                   "type": "string"
                 },
-                "message": {
+                "Message": {
                   "description": "Success message",
                   "type": "string"
                 }
@@ -198,11 +198,11 @@ func init() {
             "schema": {
               "type": "object",
               "properties": {
-                "code": {
+                "Code": {
                   "description": "Response Code",
                   "type": "string"
                 },
-                "message": {
+                "Message": {
                   "description": "Message.",
                   "type": "string"
                 }
@@ -256,22 +256,22 @@ func init() {
             "schema": {
               "type": "object",
               "properties": {
-                "avgRating": {
+                "AvgRating": {
                   "description": "Rating.",
                   "type": "string"
                 },
-                "movieName": {
+                "MovieName": {
                   "description": "Response Code",
                   "type": "string"
                 },
-                "ratingGivenCount": {
+                "PeopleRated": {
                   "description": "Rating count.",
                   "type": "integer"
                 },
-                "userComments": {
+                "UserComments": {
                   "type": "array",
                   "items": {
-                    "type": "object",
+                    "type": "string",
                     "properties": {
                       "comment": {
                         "description": "Comment given by user.",
@@ -340,15 +340,15 @@ func init() {
               "items": {
                 "type": "object",
                 "properties": {
-                  "comments": {
+                  "Comments": {
                     "description": "Comments given on the movie by user.",
                     "type": "string"
                   },
-                  "movieName": {
+                  "MovieName": {
                     "description": "Name of the movie.",
                     "type": "string"
                   },
-                  "rating": {
+                  "Rating": {
                     "description": "Rating of the movie.",
                     "type": "string"
                   }
@@ -458,11 +458,11 @@ func init() {
             "schema": {
               "type": "object",
               "properties": {
-                "code": {
+                "Code": {
                   "description": "Response Code",
                   "type": "string"
                 },
-                "message": {
+                "Message": {
                   "description": "Comment addded message.",
                   "type": "string"
                 }
@@ -521,11 +521,11 @@ func init() {
             "schema": {
               "type": "object",
               "properties": {
-                "code": {
+                "Code": {
                   "description": "Response Code",
                   "type": "string"
                 },
-                "message": {
+                "Message": {
                   "description": "Success message",
                   "type": "string"
                 }
@@ -580,11 +580,11 @@ func init() {
             "schema": {
               "type": "object",
               "properties": {
-                "code": {
+                "Code": {
                   "description": "Response Code",
                   "type": "string"
                 },
-                "message": {
+                "Message": {
                   "description": "Message.",
                   "type": "string"
                 }
@@ -638,22 +638,32 @@ func init() {
             "schema": {
               "type": "object",
               "properties": {
-                "avgRating": {
+                "AvgRating": {
                   "description": "Rating.",
                   "type": "string"
                 },
-                "movieName": {
+                "MovieName": {
                   "description": "Response Code",
                   "type": "string"
                 },
-                "ratingGivenCount": {
+                "PeopleRated": {
                   "description": "Rating count.",
                   "type": "integer"
                 },
-                "userComments": {
+                "UserComments": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/definitions/UserCommentsItems0"
+                    "type": "string",
+                    "properties": {
+                      "comment": {
+                        "description": "Comment given by user.",
+                        "type": "string"
+                      },
+                      "username": {
+                        "description": "Name of the user.",
+                        "type": "string"
+                      }
+                    }
                   }
                 }
               }
@@ -734,29 +744,16 @@ func init() {
     "RatemoviesOKBodyItems0": {
       "type": "object",
       "properties": {
-        "comments": {
+        "Comments": {
           "description": "Comments given on the movie by user.",
           "type": "string"
         },
-        "movieName": {
+        "MovieName": {
           "description": "Name of the movie.",
           "type": "string"
         },
-        "rating": {
+        "Rating": {
           "description": "Rating of the movie.",
-          "type": "string"
-        }
-      }
-    },
-    "UserCommentsItems0": {
-      "type": "object",
-      "properties": {
-        "comment": {
-          "description": "Comment given by user.",
-          "type": "string"
-        },
-        "username": {
-          "description": "Name of the user.",
           "type": "string"
         }
       }

@@ -53,10 +53,10 @@ paths:
           schema:
             type: object
             properties:
-              code:
+              Code:
                 type: string
                 description: Response Code
-              message:
+              Message:
                 type: string
                 description: Success message
         500 :
@@ -92,19 +92,19 @@ paths:
           schema:
             type: object
             properties:
-              movieName:
+              MovieName:
                 type: string
                 description: Response Code
-              avgRating:
+              AvgRating:
                 type: string
                 description: Rating.
-              ratingGivenCount:
+              PeopleRated:
                 type: integer
                 description: Rating count.
-              userComments:
+              UserComments:
                 type: array
                 items:
-                  type: object
+                  type: string
                   properties:
                     username:
                       type: string
@@ -151,13 +151,13 @@ paths:
             items:
               type: object
               properties:
-                movieName:
+                MovieName:
                   type: string
                   description: Name of the movie.
-                rating:
+                Rating:
                   type: string
                   description: Rating of the movie.
-                comments:
+                Comments:
                   type: string
                   description: Comments given on the movie by user.
         500 :
@@ -194,10 +194,10 @@ paths:
           schema:
             type: object
             properties:
-              code:
+              Code:
                 type: string
                 description: Response Code
-              message:
+              Message:
                 type: string
                 description: Message.
         500 :
@@ -234,10 +234,10 @@ paths:
           schema:
             type: object
             properties:
-              code:
+              Code:
                 type: string
                 description: Response Code
-              message:
+              Message:
                 type: string
                 description: Comment addded message.
         500 :
