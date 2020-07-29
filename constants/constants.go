@@ -11,4 +11,5 @@ const (
 	REQUEST_FAILED       = "Request is failed."
 	REQUEST_SUCCESS      = "Request is successful."
 	COLLECTION_NAME_USER = "UserRegistry"
+	INVALID_USER         = "Invalid user."
 )

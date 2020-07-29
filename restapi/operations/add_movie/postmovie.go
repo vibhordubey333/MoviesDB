@@ -74,6 +74,9 @@ type PostmovieBody struct {
 
 	// Movie rating.
 	MovieRating string `json:"MovieRating,omitempty"`
+
+	// Provid valid username.
+	UserName string `json:"UserName,omitempty"`
 }
 
 // Validate validates this postmovie body

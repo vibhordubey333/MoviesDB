@@ -1,8 +1,8 @@
-package service
+package dbconnection
 
 import (
 	"MoviesDB/constants"
-	connect "MoviesDB/dbconnection"
+	//connect "MoviesDB/dbconnection"
 	"MoviesDB/entities"
 	"context"
 	"log"
@@ -10,7 +10,7 @@ import (
 
 //DummyData hardcoded data , initialized from init method.
 func DummyData() error {
-	mongoObj := connect.GetMongoObject()
+	mongoObj := GetMongoObject()
 	if mongoObj == nil {
 		log.Println("Error while conencting with DB .")
 	}
@@ -44,7 +44,7 @@ func DummyData() error {
 }
 func AddUsers() error {
 
-	mongoObj := connect.GetMongoObject()
+	mongoObj := GetMongoObject()
 	if mongoObj == nil {
 		log.Println("Error while conencting with DB .")
 	}

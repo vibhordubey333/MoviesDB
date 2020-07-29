@@ -37,6 +37,9 @@ paths:
           schema:
             type: object
             properties:
+              UserName:
+                type: string
+                description: Provid valid username.
               MovieName:
                 type: string
                 description: Movie name.

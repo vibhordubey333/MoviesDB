@@ -24,24 +24,24 @@ func GetMoviesInfo(params movieinfo.GetmoviesinfoParams) middleware.Responder {
 
 	if movieName != "" { // Proceed , if moviename is not empty.
 		mongoObj := connect.GetMongoObject()
-		tmp := bson.M{
-			"moviename": movieName,
-		}
 		if mongoObj == nil {
 			errMsg := "Error while establishing connection with DB."
 			return movieinfo.NewGetmoviesinfoInternalServerError().WithPayload(&models.Error{Code: constants.INTERNAL_ERROR_CODE, Message: &errMsg})
 		}
 
+		srchObject := bson.M{
+			"moviename": movieName,
+		}
+
 		collection := mongoObj.Database(constants.DB_NAME).Collection(constants.COLLECTION_NAME)
 
 		//Searching for MovieName in DB.
-		err := collection.FindOne(context.Background(), tmp).Decode(&store)
+		err := collection.FindOne(context.Background(), srchObject).Decode(&store)
 		if err != nil {
 			errMsg := "Error while finding movie in DB. "
 			log.Println(errMsg + err.Error())
 			return movieinfo.NewGetmoviesinfoInternalServerError().WithPayload(&models.Error{Code: constants.INTERNAL_ERROR_CODE, Message: &errMsg})
 		}
-
 		movieName = fmt.Sprintf("%v", store["moviename"])
 		ratingCount, _ := strconv.Atoi(fmt.Sprintf("%v", store["ratinggivencount"]))
 		avgRating := fmt.Sprintf("%v", store["rating"])
