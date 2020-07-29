@@ -185,6 +185,9 @@ paths:
           schema:
             type: object
             properties:
+              UserName:
+                type: string
+                description: Valid username.
               MovieName:
                 type: string
                 description: Movie name.
@@ -225,6 +228,9 @@ paths:
           schema:
             type: object
             properties:
+              UserName:
+                type: string
+                description: Valid username.
               MovieName:
                 type: string
                 description: Movie name. 

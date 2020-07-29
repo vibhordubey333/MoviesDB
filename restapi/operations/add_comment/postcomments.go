@@ -71,6 +71,9 @@ type PostcommentsBody struct {
 
 	// Movie name.
 	MovieName string `json:"MovieName,omitempty"`
+
+	// Valid username.
+	UserName string `json:"UserName,omitempty"`
 }
 
 // Validate validates this postcomments body

@@ -65,6 +65,10 @@ func init() {
                 "MovieName": {
                   "description": "Movie name.",
                   "type": "string"
+                },
+                "UserName": {
+                  "description": "Valid username.",
+                  "type": "string"
                 }
               }
             }
@@ -190,6 +194,10 @@ func init() {
                 },
                 "MovieRating": {
                   "description": "Movie rating.",
+                  "type": "string"
+                },
+                "UserName": {
+                  "description": "Valid username.",
                   "type": "string"
                 }
               }
@@ -451,6 +459,10 @@ func init() {
                 "MovieName": {
                   "description": "Movie name.",
                   "type": "string"
+                },
+                "UserName": {
+                  "description": "Valid username.",
+                  "type": "string"
                 }
               }
             }
@@ -576,6 +588,10 @@ func init() {
                 },
                 "MovieRating": {
                   "description": "Movie rating.",
+                  "type": "string"
+                },
+                "UserName": {
+                  "description": "Valid username.",
                   "type": "string"
                 }
               }

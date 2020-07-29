@@ -46,11 +46,9 @@ func configureAPI(api *operations.MoviesDBAPI) http.Handler {
 
 	api.MovieinfoGetmoviesinfoHandler = movieinfo.GetmoviesinfoHandlerFunc(handlers.GetMovieInfo)
 
-	if api.AddCommentPostcommentsHandler == nil {
-		api.AddCommentPostcommentsHandler = add_comment.PostcommentsHandlerFunc(func(params add_comment.PostcommentsParams) middleware.Responder {
-			return middleware.NotImplemented("operation add_comment.Postcomments has not yet been implemented")
-		})
-	}
+	api.AddCommentPostcommentsHandler = add_comment.PostcommentsHandlerFunc(func(params add_comment.PostcommentsParams) middleware.Responder {
+		return middleware.NotImplemented("operation add_comment.Postcomments has not yet been implemented")
+	})
 
 	api.AddMoviePostmovieHandler = add_movie.PostmovieHandlerFunc(handlers.AddMovies)
 	if api.RatemoviesRatemoviesHandler == nil {

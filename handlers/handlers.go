@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"MoviesDB/restapi/operations/add_comment"
 	"MoviesDB/restapi/operations/add_movie"
 	"MoviesDB/restapi/operations/movieinfo"
 	"MoviesDB/service"
@@ -10,10 +11,10 @@ import (
 	//"go.uber.org/zap"
 )
 
-// func AddComments(params add_comment.AddCommentsParams) middleware.Responder {
-// 	log.Println("Request recieved by AddComments handler.")
-
-// }
+func AddComments(params add_comment.PostcommentsParams) middleware.Responder {
+	log.Println("Request recieved by AddComments handler.")
+	return service.AddComment(params)
+}
 
 func AddMovies(params add_movie.PostmovieParams) middleware.Responder {
 	log.Println("Request recieved by AddMovies handler.")
