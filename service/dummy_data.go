@@ -8,7 +8,7 @@ import (
 	"log"
 )
 
-//Hardcoded data , initialized from init method.
+//DummyData hardcoded data , initialized from init method.
 func DummyData() error {
 	mongoObj := connect.GetMongoObject()
 	if mongoObj == nil {
@@ -33,12 +33,12 @@ func DummyData() error {
 
 	multipleDBS := []interface{}{insertObj1, insertObj2}
 
-	insertObj, err := collection.InsertMany(context.TODO(), multipleDBS)
+	_, err := collection.InsertMany(context.TODO(), multipleDBS)
 
 	if err != nil {
-		log.Fatalf("Error while inserting many documnets: Error :", err)
+		log.Fatalf("Error while inserting many documnets: Error :%v", err)
 		return err
 	}
-	log.Println("Dummy data response :", insertObj)
+	log.Println("Dummy data loaded successfully.")
 	return nil
 }

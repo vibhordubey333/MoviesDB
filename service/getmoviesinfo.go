@@ -16,14 +16,13 @@ import (
 )
 
 func GetMoviesInfo(params movieinfo.GetmoviesinfoParams) middleware.Responder {
+
 	log.Println("Processing request GetMoviesInfo. ")
 
 	movieName := params.Body.MovieName
-	//var results bson.M
 	var store primitive.M
 
 	if movieName != "" { // Proceed , if moviename is not empty.
-		//results = movieName
 		mongoObj := connect.GetMongoObject()
 		tmp := bson.M{
 			"moviename": movieName,
@@ -38,42 +37,27 @@ func GetMoviesInfo(params movieinfo.GetmoviesinfoParams) middleware.Responder {
 		//Searching for MovieName in DB.
 		err := collection.FindOne(context.Background(), tmp).Decode(&store)
 		if err != nil {
-			errMsg := "Error while finding movie in DB. " + err.Error()
+			errMsg := "Error while finding movie in DB. "
+			log.Println(errMsg + err.Error())
 			return movieinfo.NewGetmoviesinfoInternalServerError().WithPayload(&models.Error{Code: constants.INTERNAL_ERROR_CODE, Message: &errMsg})
 		}
-		fmt.Printf("Result is : %+v\n", store)
 
-		//Decoding object.
+		movieName = fmt.Sprintf("%v", store["moviename"])
+		ratingCount, _ := strconv.Atoi(fmt.Sprintf("%v", store["ratinggivencount"]))
+		avgRating := fmt.Sprintf("%v", store["rating"])
 
-	} else { // If movie name is empty return with error.
-		errMsg := constants.MOVIE_NAME_EMPTY
-		movieinfo.NewGetmoviesinfoInternalServerError().WithPayload(&models.Error{Code: constants.INTERNAL_ERROR_CODE, Message: &errMsg})
+		//Storing commnents in string slice.
+		userComments := make([]string, 0)
+		for k, v := range store["comments"].(primitive.M) {
+			temp := k + ":" + v.(string)
+			userComments = append(userComments, temp)
+		}
+		log.Println(constants.REQUEST_SUCCESS)
+		return movieinfo.NewGetmoviesinfoOK().WithPayload(&movieinfo.GetmoviesinfoOKBody{MovieName: movieName, PeopleRated: int64(ratingCount), AvgRating: avgRating, UserComments: userComments})
 	}
-	//fmt.Println("Movie Name: ", results)
-	//return nil
-	movieName = fmt.Sprintf("%v", store["moviename"])
-	ratingCount, _ := strconv.Atoi(fmt.Sprintf("%v", store["ratinggivencount"]))
-	avgRating := fmt.Sprintf("%v", store["rating"])
 
-	userComments := make([]string, 0)
-	//userComments = append(userComments, store["comments"].(primitive.M))
-	//fmt.Println("Comments: ", userComments)
-	for k, v := range store["comments"].(primitive.M) {
-		fmt.Println("K:", k, "V:", v)
-		temp := k + ":" + v.(string)
-		userComments = append(userComments, temp)
-	}
-	//return nil
-	return movieinfo.NewGetmoviesinfoOK().WithPayload(&movieinfo.GetmoviesinfoOKBody{MovieName: movieName, PeopleRated: int64(ratingCount), AvgRating: avgRating, UserComments: userComments})
-}
-
-func MapToSlice(m map[string]interface{}) []string {
-
-	slice := make([]string, 0)
-
-	for k, _ := range m {
-		slice = append(slice, k)
-	}
-	fmt.Println("Checking : ", slice)
-	return slice
+	//In case empty movie name is provided return with error.
+	errMsg := constants.MOVIE_NAME_EMPTY
+	log.Println(constants.REQUEST_FAILED + errMsg)
+	return movieinfo.NewGetmoviesinfoInternalServerError().WithPayload(&models.Error{Code: constants.INTERNAL_ERROR_CODE, Message: &errMsg})
 }
