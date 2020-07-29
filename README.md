@@ -12,10 +12,11 @@ Microservice written in Golang , where user can save new movies as well as rate,
 3.Testcases are present under testcases directory.
 
 6.Future scope for this microservice.
-  -Add update service.
-  -Contanerization using Docker.
-  -Minikube.
-  -Introduce Makefile.
-  -Improve testcases.
+
+    -Add update service.
+    -Contanerization using Docker.
+    -Minikube.
+    -Introduce Makefile.
+    -Improve testcases.
  
 
