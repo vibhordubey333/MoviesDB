@@ -39,6 +39,27 @@ func DummyData() error {
 		log.Fatalf("Error while inserting many documnets: Error :%v", err)
 		return err
 	}
-	log.Println("Dummy data loaded successfully.")
+	log.Println("Movie dummy data is loaded successfully.")
+	return nil
+}
+func AddUsers() error {
+
+	mongoObj := connect.GetMongoObject()
+	if mongoObj == nil {
+		log.Println("Error while conencting with DB .")
+	}
+
+	collection := mongoObj.Database(constants.DB_NAME).Collection(constants.COLLECTION_NAME_USER)
+
+	insertObj1 := entities.UserRegistry{"admin", "1-7-2020"}
+	insertObj2 := entities.UserRegistry{"chief", "1-1-2020"}
+
+	multipleDB := []interface{}{insertObj1, insertObj2}
+	_, err := collection.InsertMany(context.TODO(), multipleDB)
+	if err != nil {
+		log.Fatalf("Error while inserting many  user documents. Error :%v", err)
+		return err
+	}
+	log.Println("User dummy data is loaded successfully.")
 	return nil
 }

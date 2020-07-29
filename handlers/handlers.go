@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"MoviesDB/restapi/operations/add_movie"
 	"MoviesDB/restapi/operations/movieinfo"
 	"MoviesDB/service"
 	"log"
@@ -14,9 +15,10 @@ import (
 
 // }
 
-// func AddMovies(params add_movie.AddMovieParams) middleware.Responder {
-
-// }
+func AddMovies(params add_movie.PostmovieParams) middleware.Responder {
+	log.Println("Request recieved by AddMovies handler.")
+	return service.AddMovies(params)
+}
 
 // func AddRating(params add_movie.AddRatingBody) middleware.Responder {
 // 	return nil
