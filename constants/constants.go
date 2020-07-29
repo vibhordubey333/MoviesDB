@@ -12,4 +12,7 @@ const (
 	REQUEST_SUCCESS      = "Request is successful."
 	COLLECTION_NAME_USER = "UserRegistry"
 	INVALID_USER         = "Invalid user."
+	INVALID_MOVIENAME    = "Invalid movie name"
+	ERR_DB               = "Error while establishing connection with DB."
+	NO_RECORD_FOUND      = "No record found."
 )
