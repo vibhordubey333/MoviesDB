@@ -11,7 +11,9 @@ Microservice written in Golang , where user can save new movies as well as rate,
 
 3.Testcases are present under testcases directory.
 
-6.Future scope for this microservice.
+4. Refer cURL_Requests.rtf for testing the API.
+
+5.Future scope for this microservice.
 
     -Add update service.
     -Contanerization using Docker.
