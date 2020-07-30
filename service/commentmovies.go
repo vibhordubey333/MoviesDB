@@ -24,6 +24,7 @@ func AddComment(params add_comment.PostcommentsParams) middleware.Responder {
 		if MovieNameIsValid(movieName) == movieName && len(movieName) > 0 && len(movieComment) > 0 {
 
 			searchResult, err := ReadDocument(entities.IMDBRegistry{Comments: movieComment}, &entities.IMDBRegistry{})
+			log.Println("SearchResult is :", searchResult)
 			if err != nil {
 
 			}
@@ -31,6 +32,7 @@ func AddComment(params add_comment.PostcommentsParams) middleware.Responder {
 				result := searchResult.(entities.IMDBRegistry)
 				commentUp := result.Comments
 				_ = commentUp
+
 				_, err := UpdateDocument(entities.IMDBRegistry{Comments: result.Comments}, "$push", nil)
 				if err != nil {
 
