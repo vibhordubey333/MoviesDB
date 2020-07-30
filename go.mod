@@ -15,4 +15,5 @@ require (
 	go.mongodb.org/mongo-driver v1.3.5
 	go.uber.org/zap v1.15.0 // indirect
 	golang.org/x/net v0.0.0-20200602114024-627f9648deb9
+	gopkg.in/mgo.v2 v2.0.0-20190816093944-a6b53ec6cb22 // indirect
 )

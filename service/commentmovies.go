@@ -5,9 +5,11 @@ import (
 	"MoviesDB/entities"
 	"MoviesDB/models"
 	"MoviesDB/restapi/operations/add_comment"
+	"fmt"
 	"log"
 
 	"github.com/go-openapi/runtime/middleware"
+	"gopkg.in/mgo.v2"
 )
 
 func AddComment(params add_comment.PostcommentsParams) middleware.Responder {
@@ -23,7 +25,7 @@ func AddComment(params add_comment.PostcommentsParams) middleware.Responder {
 		//Checking if provided moviename exist in DB.
 		if MovieNameIsValid(movieName) == movieName && len(movieName) > 0 && len(movieComment) > 0 {
 
-			searchResult, err := ReadDocument(entities.IMDBRegistry{Comments: movieComment}, &entities.IMDBRegistry{})
+			searchResult, err := ReadDocument(entities.IMDBRegistry{MovieName: movieName}, &entities.IMDBRegistry{})
 			log.Println("SearchResult is :", searchResult)
 			if err != nil {
 
@@ -31,12 +33,19 @@ func AddComment(params add_comment.PostcommentsParams) middleware.Responder {
 			if searchResult != nil {
 				result := searchResult.(entities.IMDBRegistry)
 				commentUp := result.Comments
-				_ = commentUp
+				log.Println("CommentUp :", commentUp)
+				commentUp[userName] = movieComment["comments"]
+				log.Println("CommentUp after update:", commentUp)
 
-				_, err := UpdateDocument(entities.IMDBRegistry{Comments: result.Comments}, "$push", nil)
-				if err != nil {
-
+				for i, v := range commentUp {
+					fmt.Println("i:", i, "v:", v)
 				}
+
+				/*_, err := UpdateDocument(entities.IMDBRegistry{Comments: commentUp}, "$push", nil)
+				if err != nil {
+					log.Println("Error while updating document", err)
+				}*/
+				mgo.Change
 			}
 
 			//UpdateDocument(entities.IMDBRegistry{Comments: movieComment})
