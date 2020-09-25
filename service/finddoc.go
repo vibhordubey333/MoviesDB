@@ -3,13 +3,16 @@ package service
 import (
 	"MoviesDB/constants"
 	connect "MoviesDB/dbconnection"
+	"MoviesDB/entities"
 	"context"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"log"
 	"reflect"
 
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/mongo"
 )
 
 func ReadDocument(filterobj interface{}, outputObject interface{}) (interface{}, error) {
@@ -89,4 +92,24 @@ func UpdateDocument(filterObject interface{}, operation string, update map[strin
 		return result.ModifiedCount, nil
 	}
 
+}
+func ReturnAllRecords(client *mongo.Client, filter bson.M) []*entities.IMDBRegistry {
+	//When filter is empty it returns all the objects
+	var poc_object []*entities.IMDBRegistry
+	collection := client.Database(constants.DB_NAME).Collection("IMDBRegistry")
+
+	cur, err := collection.Find(context.TODO(), filter)
+	if err != nil {
+		fmt.Println("Error in ReturnAllRecords: ", err.Error())
+	}
+
+	for cur.Next(context.TODO()) {
+		var records entities.IMDBRegistry
+		err = cur.Decode(&records)
+		if err != nil {
+			fmt.Println("Error while iterating records :")
+		}
+		poc_object = append(poc_object, &records)
+	}
+	return poc_object
 }

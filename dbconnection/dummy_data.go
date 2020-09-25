@@ -17,19 +17,18 @@ func DummyData() error {
 
 	collection := mongoObj.Database(constants.DB_NAME).Collection(constants.COLLECTION_NAME)
 
-	commentsObj1 := map[string]interface{}{
-		"Alexi Murdoch":  "Phenomenal movie.",
-		"Olafur Arnalds": "Awesome.",
-	}
-	commentsObj2 := map[string]interface{}{
-		"Tom Hardy":       "Nice movie.",
-		"Chris Hemsworth": "Good movie.",
-		"Alexi Murdoch":   "Phenomenal movie.",
-		"Olafur Arnalds":  "Awesome.",
-	}
-	insertObj1 := entities.IMDBRegistry{"Shawshank Redemption", "9.3", 2, commentsObj1}
+	commentsObj1 := entities.Comments{"Shawshank Redemption", "Alexi Murdoch", "Phenomenal movie."}
+	commentsObj2 := entities.Comments{"Shawshank Redemption", "Alexi Murdoch_2", "Phenomenal movie_2."}
+	commentsObj3 := entities.Comments{"Shawshank Redemption", "Alexi Murdoch_3", "Phenomenal movie_3."}
+	commentsObj4 := entities.Comments{"Hannibal", "Tom Hardy", "Nice Movie"}
+	commentsObj5 := entities.Comments{"Hannibal", "Tom Hardy_1", "Nice Movie_1"}
+	commentsObj6 := entities.Comments{"Hannibal", "Tom Hardy_2", "Nice Movie_2"}
 
-	insertObj2 := entities.IMDBRegistry{"Hannibal", "9.0", 4, commentsObj2}
+	commentsCollection1 := []entities.Comments{commentsObj1, commentsObj2, commentsObj3}
+	commentsCollection2 := []entities.Comments{commentsObj4, commentsObj5, commentsObj6}
+	insertObj1 := entities.IMDBRegistry{"Shawshank Redemption", "9.3", 2, commentsCollection1}
+
+	insertObj2 := entities.IMDBRegistry{"Hannibal", "9.0", 4, commentsCollection2}
 
 	multipleDBS := []interface{}{insertObj1, insertObj2}
 

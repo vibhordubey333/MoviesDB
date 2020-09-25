@@ -19,7 +19,7 @@ func AddComments(params add_comment.PostcommentsParams) middleware.Responder {
 func AddMovies(params add_movie.PostmovieParams) middleware.Responder {
 	log.Println("Request recieved by AddMovies handler.")
 	return nil
-	return service.AddMovies(params)
+	//return service.AddMovies(params)
 }
 
 // func AddRating(params add_movie.AddRatingBody) middleware.Responder {

@@ -38,17 +38,11 @@ func configureAPI(api *operations.MoviesDBAPI) http.Handler {
 
 	api.JSONProducer = runtime.JSONProducer()
 
-	if api.AddMovieAddmovieratingHandler == nil {
-		api.AddMovieAddmovieratingHandler = add_movie.AddmovieratingHandlerFunc(func(params add_movie.AddmovieratingParams) middleware.Responder {
-			return middleware.NotImplemented("operation add_movie.Addmovierating has not yet been implemented")
-		})
-	}
+	//api.AddMovieAddmovieratingHandler = handlers.AddComments(add_comment.)
 
 	api.MovieinfoGetmoviesinfoHandler = movieinfo.GetmoviesinfoHandlerFunc(handlers.GetMovieInfo)
 
-	api.AddCommentPostcommentsHandler = add_comment.PostcommentsHandlerFunc(func(params add_comment.PostcommentsParams) middleware.Responder {
-		return middleware.NotImplemented("operation add_comment.Postcomments has not yet been implemented")
-	})
+	api.AddCommentPostcommentsHandler = add_comment.PostcommentsHandlerFunc(handlers.AddComments)
 
 	api.AddMoviePostmovieHandler = add_movie.PostmovieHandlerFunc(handlers.AddMovies)
 	if api.RatemoviesRatemoviesHandler == nil {
