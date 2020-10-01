@@ -1,9 +1,6 @@
 package service
 
 import (
-
-	//"MoviesDB/entities"
-	//"MoviesDB/models"
 	"MoviesDB/constants"
 	"MoviesDB/entities"
 	"MoviesDB/models"
@@ -21,7 +18,6 @@ import (
 
 func AddComment(params add_comment.PostcommentsParams) middleware.Responder {
 	log.Println("Processing request to AddComment.")
-	//mongoObj := connect.GetMongoObject()
 
 	userName := params.Body.UserName
 	movieName := params.Body.MovieName
@@ -33,19 +29,33 @@ func AddComment(params add_comment.PostcommentsParams) middleware.Responder {
 			log.Println("User is valid in AddComment.")
 
 			searchResult, err := ReadDocument(entities.IMDBRegistry{MovieName: movieName}, &entities.IMDBRegistry{})
-			//searchResult := ReturnAllRecords(mongoObj, bson.M{"MovieName": movieName})
-			log.Println("SearchResult is :", searchResult)
-			fmt.Println("Err: ", err)
-
+			if err != nil {
+				log.Fatalln("Error while reading DB in AddComment: ", err.Error())
+				errMsg := err.Error()
+				return add_comment.NewPostcommentsInternalServerError().WithPayload(&models.Error{Code: constants.INTERNAL_ERROR_CODE, Message: &errMsg})
+			}
 			if err != nil {
 				log.Fatalln("Error while reading DB in AddComment: ", err.Error())
 				errMsg := err.Error()
 				return add_comment.NewPostcommentsInternalServerError().WithPayload(&models.Error{Code: constants.INTERNAL_ERROR_CODE, Message: &errMsg})
 			}
 			if searchResult != nil {
-				log.Println("UserInfo is found.")
 				result := searchResult.(entities.IMDBRegistry)
-				fmt.Println("Result is :", result)
+				filterObject := make(map[string]interface{})
+				filterObject["MovieName"] = entities.IMDBRegistry{MovieName: movieName}
+				updatedComment := make(map[string]interface{}, 0)
+				newComment := entities.Comments{movieName, userName, movieComment}
+				result.Comments = append(result.Comments, newComment)
+				updatedComment["comments"] = result.Comments
+				updatedResponse, err := UpdateDocument(entities.IMDBRegistry{MovieName: movieName}, "$set", updatedComment)
+				if err != nil {
+					errMsg := constants.INVALID_MOVIENAME + constants.REQUEST_FAILED
+					return add_comment.NewPostcommentsInternalServerError().WithPayload(&models.Error{Code: constants.INTERNAL_ERROR_CODE, Message: &errMsg})
+				} else {
+					log.Println("Comment saved to DB :", updatedResponse)
+					successMsg := fmt.Sprintf("Comment successfully added to DB.")
+					return add_comment.NewPostcommentsOK().WithPayload(&add_comment.PostcommentsOKBody{Code: constants.SUCCESS_CODE, Message: successMsg})
+				}
 
 			}
 		} else { // If moviename is invalid.

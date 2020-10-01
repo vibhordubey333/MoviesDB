@@ -65,7 +65,7 @@ func UpdateDocument(filterObject interface{}, operation string, update map[strin
 		log.Fatalln(constants.ERR_DB)
 		return 0, nil // TODO
 	}
-	collection := mongoObj.Database(constants.DB_NAME).Collection(constants.COLLECTION_NAME_USER)
+	collection := mongoObj.Database(constants.DB_NAME).Collection(constants.COLLECTION_NAME)
 
 	jsonData, err := json.Marshal(filterObject)
 	if err != nil {
