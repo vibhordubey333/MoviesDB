@@ -22,9 +22,10 @@ func AddMovies(params add_movie.PostmovieParams) middleware.Responder {
 	//return service.AddMovies(params)
 }
 
-// func AddRating(params add_movie.AddRatingBody) middleware.Responder {
-// 	return nil
-// }
+func AddRating(params add_movie.AddmovieratingParams) middleware.Responder {
+	log.Println("Request recieved by AddRating handler.")
+	return service.AddRating(params)
+}
 
 func GetMovieInfo(params movieinfo.GetmoviesinfoParams) middleware.Responder {
 	log.Println("Request recieved by GetMoviesInfo handler.")

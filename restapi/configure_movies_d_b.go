@@ -7,18 +7,19 @@ import (
 	"net/http"
 
 	"MoviesDB/handlers"
+
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/runtime/middleware"
+
 	"MoviesDB/restapi/operations"
 	"MoviesDB/restapi/operations/add_comment"
 	"MoviesDB/restapi/operations/add_movie"
 	"MoviesDB/restapi/operations/movieinfo"
 	"MoviesDB/restapi/operations/ratemovies"
-
-	"github.com/go-openapi/errors"
-	"github.com/go-openapi/runtime"
-	"github.com/go-openapi/runtime/middleware"
 )
 
-//go:generate swagger generate server --target ..\..\MoviesDB --name MoviesDB --spec ..\api\movies_swagger.yml
+//go:generate swagger generate server --target ..\..\MoviesDB --name MoviesDB --spec ..\api\movies_swagger.yml --principal interface{}
 
 func configureFlags(api *operations.MoviesDBAPI) {
 	// api.CommandLineOptionsGroups = []swag.CommandLineOptionsGroup{ ... }
@@ -34,22 +35,33 @@ func configureAPI(api *operations.MoviesDBAPI) http.Handler {
 	// Example:
 	// api.Logger = log.Printf
 
+	api.UseSwaggerUI()
+	// To continue using redoc as your UI, uncomment the following line
+	// api.UseRedoc()
+
 	api.JSONConsumer = runtime.JSONConsumer()
 
 	api.JSONProducer = runtime.JSONProducer()
 
-	//api.AddMovieAddmovieratingHandler = handlers.AddComments(add_comment.)
-
+	//	if api.AddMovieAddmovieratingHandler == nil {
+	api.AddMovieAddmovieratingHandler = add_movie.AddmovieratingHandlerFunc(handlers.AddRating)
+	//	}
+	//	if api.MovieinfoGetmoviesinfoHandler == nil {
 	api.MovieinfoGetmoviesinfoHandler = movieinfo.GetmoviesinfoHandlerFunc(handlers.GetMovieInfo)
-
+	//}
+	//if api.AddCommentPostcommentsHandler == nil {
 	api.AddCommentPostcommentsHandler = add_comment.PostcommentsHandlerFunc(handlers.AddComments)
-
-	api.AddMoviePostmovieHandler = add_movie.PostmovieHandlerFunc(handlers.AddMovies)
-	if api.RatemoviesRatemoviesHandler == nil {
-		api.RatemoviesRatemoviesHandler = ratemovies.RatemoviesHandlerFunc(func(params ratemovies.RatemoviesParams) middleware.Responder {
-			return middleware.NotImplemented("operation ratemovies.Ratemovies has not yet been implemented")
-		})
-	}
+	//}
+	//if api.AddMoviePostmovieHandler == nil {
+	api.AddMoviePostmovieHandler = add_movie.PostmovieHandlerFunc(func(params add_movie.PostmovieParams) middleware.Responder {
+		return middleware.NotImplemented("operation add_movie.Postmovie has not yet been implemented")
+	})
+	//}
+	//if api.RatemoviesRatemoviesHandler == nil {
+	api.RatemoviesRatemoviesHandler = ratemovies.RatemoviesHandlerFunc(func(params ratemovies.RatemoviesParams) middleware.Responder {
+		return middleware.NotImplemented("operation ratemovies.Ratemovies has not yet been implemented")
+	})
+	//}
 
 	api.PreServerShutdown = func() {}
 

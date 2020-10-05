@@ -108,7 +108,7 @@ type RatemoviesOKBodyItems0 struct {
 	MovieName string `json:"MovieName,omitempty"`
 
 	// Rating of the movie.
-	Rating string `json:"Rating,omitempty"`
+	Rating float64 `json:"Rating,omitempty"`
 }
 
 // Validate validates this ratemovies o k body items0

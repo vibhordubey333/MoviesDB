@@ -44,7 +44,7 @@ paths:
                 type: string
                 description: Movie name.
               MovieRating:
-                type: string
+                type: number
                 description: Movie rating.
               MovieComments:
                 type: string
@@ -158,7 +158,7 @@ paths:
                   type: string
                   description: Name of the movie.
                 Rating:
-                  type: string
+                  type: number
                   description: Rating of the movie.
                 Comments:
                   type: string
@@ -192,7 +192,7 @@ paths:
                 type: string
                 description: Movie name.
               MovieRating:
-                type: string
+                type: number
                 description: Movie rating.
       responses:
         200:

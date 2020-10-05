@@ -73,7 +73,7 @@ type PostmovieBody struct {
 	MovieName string `json:"MovieName,omitempty"`
 
 	// Movie rating.
-	MovieRating string `json:"MovieRating,omitempty"`
+	MovieRating float64 `json:"MovieRating,omitempty"`
 
 	// Provid valid username.
 	UserName string `json:"UserName,omitempty"`

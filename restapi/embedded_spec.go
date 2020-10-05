@@ -131,7 +131,7 @@ func init() {
                 },
                 "MovieRating": {
                   "description": "Movie rating.",
-                  "type": "string"
+                  "type": "number"
                 },
                 "UserName": {
                   "description": "Provid valid username.",
@@ -194,7 +194,7 @@ func init() {
                 },
                 "MovieRating": {
                   "description": "Movie rating.",
-                  "type": "string"
+                  "type": "number"
                 },
                 "UserName": {
                   "description": "Valid username.",
@@ -362,7 +362,7 @@ func init() {
                   },
                   "Rating": {
                     "description": "Rating of the movie.",
-                    "type": "string"
+                    "type": "number"
                   }
                 }
               }
@@ -525,7 +525,7 @@ func init() {
                 },
                 "MovieRating": {
                   "description": "Movie rating.",
-                  "type": "string"
+                  "type": "number"
                 },
                 "UserName": {
                   "description": "Provid valid username.",
@@ -588,7 +588,7 @@ func init() {
                 },
                 "MovieRating": {
                   "description": "Movie rating.",
-                  "type": "string"
+                  "type": "number"
                 },
                 "UserName": {
                   "description": "Valid username.",
@@ -778,7 +778,7 @@ func init() {
         },
         "Rating": {
           "description": "Rating of the movie.",
-          "type": "string"
+          "type": "number"
         }
       }
     },
