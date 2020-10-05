@@ -113,3 +113,31 @@ func ReturnAllRecords(client *mongo.Client, filter bson.M) []*entities.IMDBRegis
 	}
 	return poc_object
 }
+
+// return number of records deleted or error if any
+func DeleteDocument(objectToDelete interface{}) (int64, error) {
+	jsonData, err := json.Marshal(objectToDelete)
+	if err != nil {
+		return 0, err
+	}
+	var m interface{}
+	json.Unmarshal(jsonData, &m)
+	filter := m.(map[string]interface{})
+
+	mongoObj := connect.GetMongoObject()
+
+	if mongoObj == nil {
+		log.Fatalln(constants.ERR_DB)
+		return 0, nil // TODO
+	}
+
+	collection := mongoObj.Database(constants.DB_NAME).Collection("IMDBRegistry")
+
+	result, err := collection.DeleteOne(context.TODO(), filter)
+
+	if err != nil {
+		return 0, err
+	} else {
+		return result.DeletedCount, nil
+	}
+}
