@@ -17,6 +17,13 @@ func DummyData() error {
 
 	collection := mongoObj.Database(constants.DB_NAME).Collection(constants.COLLECTION_NAME)
 
+	ratingObj1 := entities.Ratings{"Shawshank Redemption", "Alexi Murdoch", 5.5}
+	ratingObj2 := entities.Ratings{"Shawshank Redemption", "Alexi Murdoch_2", 4.5}
+	ratingObj3 := entities.Ratings{"Shawshank Redemption", "Alexi Murdoch_3", 7.8}
+	ratingObj4 := entities.Ratings{"Hannibal", "Tom Hardy", 7.9}
+	ratingObj5 := entities.Ratings{"Hannibal", "Tom Hardy_1", 9.1}
+	ratingObj6 := entities.Ratings{"Hannibal", "Tom Hardy_2", 2.3}
+
 	commentsObj1 := entities.Comments{"Shawshank Redemption", "Alexi Murdoch", "Phenomenal movie."}
 	commentsObj2 := entities.Comments{"Shawshank Redemption", "Alexi Murdoch_2", "Phenomenal movie_2."}
 	commentsObj3 := entities.Comments{"Shawshank Redemption", "Alexi Murdoch_3", "Phenomenal movie_3."}
@@ -24,11 +31,15 @@ func DummyData() error {
 	commentsObj5 := entities.Comments{"Hannibal", "Tom Hardy_1", "Nice Movie_1"}
 	commentsObj6 := entities.Comments{"Hannibal", "Tom Hardy_2", "Nice Movie_2"}
 
+	ratingsCollection1 := []entities.Ratings{ratingObj1, ratingObj2, ratingObj3}
+	ratingsCollection2 := []entities.Ratings{ratingObj4, ratingObj5, ratingObj6}
+
 	commentsCollection1 := []entities.Comments{commentsObj1, commentsObj2, commentsObj3}
 	commentsCollection2 := []entities.Comments{commentsObj4, commentsObj5, commentsObj6}
-	insertObj1 := entities.IMDBRegistry{"Shawshank Redemption", "9.3", 2, commentsCollection1}
 
-	insertObj2 := entities.IMDBRegistry{"Hannibal", "9.0", 4, commentsCollection2}
+	insertObj1 := entities.IMDBRegistry{"Shawshank Redemption", ratingsCollection1, 2, commentsCollection1}
+
+	insertObj2 := entities.IMDBRegistry{"Hannibal", ratingsCollection2, 3, commentsCollection2}
 
 	multipleDBS := []interface{}{insertObj1, insertObj2}
 
